@@ -29,7 +29,17 @@ class Images(DataBase):
     return image_id
 
   def get_images_by_source(self, source,  offset=0, limit=50):
-    query = {"source_class":source}
+    query = {"source":source}
+
+    try:
+      r = self.images.find(query).skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
+
+  def get_images_by_category_class(self, clazz,  offset=0, limit=50):
+    query = {"category_class":clazz}
 
     try:
       r = self.images.find(query).skip(offset).limit(limit)
