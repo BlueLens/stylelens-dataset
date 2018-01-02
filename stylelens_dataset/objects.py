@@ -78,6 +78,18 @@ class Objects(DataBase):
 
     return list(r)
 
+  def get_objects_by_fabric(self, fabric,  offset=0, limit=50):
+    query = {}
+    query['fabric_class'] = {'$in': [fabric]}
+    # db.getCollection('images').find({'fabric_class': {'$in': ['feather']}, '$where': 'this.fabric_class.length>1'})
+
+    try:
+      r = self.objects.find(query).where('this.fabric_class.length>1').skip(offset).limit(limit)
+      # r = self.objects.find(query)
+    except Exception as e:
+      print(e)
+    return list(r)
+
   def get_objects_by_shape(self, shape,  offset=0, limit=50):
     query = {"shape_class":shape}
 
