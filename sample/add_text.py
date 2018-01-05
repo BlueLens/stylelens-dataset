@@ -9,7 +9,7 @@ try:
   text_dataset['class_code'] = '1'
   text_dataset['text'] = 'test'
 
-  api_response = api_instance.add_texts(text_dataset)
+  api_response = api_instance.add_text(text_dataset)
   pprint(api_response)
 
 except Exception as e:

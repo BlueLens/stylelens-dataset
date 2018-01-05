@@ -6,7 +6,7 @@ class Texts(DataBase):
     super(Texts, self).__init__()
     self.texts = self.db.texts
 
-  def add_texts(self, text_dataset):
+  def add_text(self, text_dataset):
     id = None
     query = {"class_code": text_dataset["class_code"], "text": text_dataset["text"]}
     try:
@@ -19,7 +19,7 @@ class Texts(DataBase):
 
     return id
 
-  def get_texts(self, class_code,  offset=0, limit=50):
+  def get_texts_by_class_code(self, class_code,  offset=0, limit=100):
     query = {"class_code": class_code}
 
     try:
