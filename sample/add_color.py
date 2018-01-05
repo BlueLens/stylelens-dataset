@@ -7,7 +7,7 @@ api_instance = Colors()
 color = {}
 color['file'] = 'xxx.jpg'
 color['name'] = 'red'
-color['code'] = '1'
+color['code'] = 'CC0200'
 
 try:
   api_response = api_instance.add_color(color)
