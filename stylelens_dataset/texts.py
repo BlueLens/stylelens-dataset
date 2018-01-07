@@ -5,6 +5,7 @@ class Texts(DataBase):
   def __init__(self):
     super(Texts, self).__init__()
     self.texts = self.db.texts
+    self.classes = self.db.text_classes
 
   def add_text(self, text):
     id = None
@@ -26,6 +27,16 @@ class Texts(DataBase):
 
     try:
       r = self.texts.find(query).skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
+
+  def get_classes(self, offset=0, limit=100):
+    query = {}
+
+    try:
+      r = self.classes.find(query).skip(offset).limit(limit)
     except Exception as e:
       print(e)
 
