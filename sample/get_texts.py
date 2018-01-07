@@ -11,7 +11,7 @@ try:
   class_code = "1"
 
   while True:
-    res = api_instance.get_texts_by_class_code(class_code, offset=offset, limit=limit)
+    res = api_instance.get_texts(class_code, offset=offset, limit=limit)
 
     pprint(res)
     if limit >= len(res):
@@ -20,4 +20,4 @@ try:
       offset = offset + limit
 
 except Exception as e:
-  print("Exception when calling get_texts_by_class_code: %s\n" % e)
+  print("Exception when calling get_texts: %s\n" % e)

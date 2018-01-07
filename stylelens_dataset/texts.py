@@ -6,11 +6,12 @@ class Texts(DataBase):
     super(Texts, self).__init__()
     self.texts = self.db.texts
 
-  def add_text(self, text_dataset):
+  def add_text(self, text):
     id = None
-    query = {"class_code": text_dataset["class_code"], "text": text_dataset["text"]}
+    query = {"class_code": text["class_code"], "text": text["text"]}
     try:
-      r = self.texts.update_one(query, {"$set": text_dataset},upsert=True)
+      r = self.texts.update_one(query, {"$set": text},
+                                upsert=True)
     except Exception as e:
       print(e)
 
@@ -19,7 +20,8 @@ class Texts(DataBase):
 
     return id
 
-  def get_texts_by_class_code(self, class_code,  offset=0, limit=100):
+  def get_texts(self, class_code,
+                offset=0, limit=100):
     query = {"class_code": class_code}
 
     try:

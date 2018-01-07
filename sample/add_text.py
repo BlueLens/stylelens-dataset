@@ -5,12 +5,12 @@ from pprint import pprint
 api_instance = Texts()
 
 try:
-  text_dataset = {}
-  text_dataset['class_code'] = '1'
-  text_dataset['text'] = 'test'
+  text = {}
+  text['class_code'] = '1'
+  text['text'] = 'test'
 
-  api_response = api_instance.add_text(text_dataset)
+  api_response = api_instance.add_text(text)
   pprint(api_response)
 
 except Exception as e:
-  print("Exception when calling add_texts: %s\n" % e)
+  print("Exception when calling add_text: %s\n" % e)
