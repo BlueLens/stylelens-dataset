@@ -38,6 +38,16 @@ class Objects(DataBase):
 
     return list(r)
 
+  def get_objects_by_category_name(self, category_name,  offset=0, limit=50):
+    query = {"category_name":category_name}
+
+    try:
+      r = self.objects.find(query).skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
+
   def get_objects_by_color(self, color,  offset=0, limit=50):
     query = {"color_class":color}
 
