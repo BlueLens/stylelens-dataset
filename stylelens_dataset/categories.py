@@ -20,3 +20,11 @@ class Categories(DataBase):
       id = str(r.raw_result['upserted'])
 
     return id
+
+  def get_categories(self, offset=0, limit=100):
+    try:
+      r = self.categories.find().skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
