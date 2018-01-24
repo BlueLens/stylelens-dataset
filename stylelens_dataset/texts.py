@@ -9,7 +9,7 @@ class Texts(DataBase):
 
   def add_text(self, text):
     id = None
-    query = {"class_code": text["class_code"], "text": text["text"]}
+    query = {"text_code": text["text_code"], "text": text["text"]}
     try:
       r = self.texts.update_one(query, {"$set": text},
                                 upsert=True)
@@ -21,9 +21,9 @@ class Texts(DataBase):
 
     return id
 
-  def get_texts(self, code,
+  def get_texts(self, text_code,
                 offset=0, limit=100):
-    query = {"code": code}
+    query = {"text_code": text_code}
 
     try:
       r = self.texts.find(query).skip(offset).limit(limit)
