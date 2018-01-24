@@ -4,7 +4,17 @@ class Categories(DataBase):
   def __init__(self):
     super(Categories, self).__init__()
     self.categories = self.db.categories
-    self.classes = self.db.categori_classes
+    self.classes = self.db.category_classes
+
+  def get_classes(self, offset=0, limit=100):
+    query = {}
+
+    try:
+      r = self.classes.find(query).skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
 
   def add_category(self, category):
     id = None
