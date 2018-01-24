@@ -21,9 +21,9 @@ class Texts(DataBase):
 
     return id
 
-  def get_texts(self, class_code,
+  def get_texts(self, code,
                 offset=0, limit=100):
-    query = {"class_code": class_code}
+    query = {"code": code}
 
     try:
       r = self.texts.find(query).skip(offset).limit(limit)
