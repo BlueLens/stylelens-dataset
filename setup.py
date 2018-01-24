@@ -12,7 +12,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "stylelens-dataset"
-VERSION = "0.0.17"
+VERSION = "0.0.18"
 # To install the library, run the following
 #
 # python setup.py install
