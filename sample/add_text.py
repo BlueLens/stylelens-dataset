@@ -6,7 +6,7 @@ api_instance = Texts()
 
 try:
   text = {}
-  text['class_code'] = '1'
+  text['text_code'] = '1'
   text['text'] = 'test'
 
   api_response = api_instance.add_text(text)
