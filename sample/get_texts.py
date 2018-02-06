@@ -8,10 +8,11 @@ api_instance = Texts()
 try:
   offset = 0
   limit = 5
-  class_code = "1"
+  text_code = "5"  # == sweater
+
 
   while True:
-    res = api_instance.get_texts(class_code, offset=offset, limit=limit)
+    res = api_instance.get_texts(text_code, offset=offset, limit=limit)
 
     pprint(res)
     if limit >= len(res):
