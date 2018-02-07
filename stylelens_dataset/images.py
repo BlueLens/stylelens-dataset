@@ -48,6 +48,23 @@ class Images(DataBase):
 
     return list(r)
 
+  def get_images_by_category_name(self, category_name,
+                                  is_confirmed=None,
+                                  offset=0, limit=50):
+    query = {"category_name":category_name}
+
+    if is_confirmed is None:
+      query['is_confirmed'] = {'$exists':False}
+    else:
+      query['is_confirmed'] = is_confirmed
+
+    try:
+      r = self.images.find(query).skip(offset).limit(limit)
+    except Exception as e:
+      print(e)
+
+    return list(r)
+
   def update_image(self, image):
     try:
       r = self.images.update_one({"_id": image['_id']},
@@ -57,6 +74,18 @@ class Images(DataBase):
       return None
 
     return r.raw_result
+
+  def validate_images(self, ids, confirmed=True):
+    try:
+      bulk = self.images.initialize_unordered_bulk_op()
+      for i in ids:
+        img = {}
+        img['is_confirmed'] = confirmed
+        bulk.find({'_id': ObjectId(i)}).update({'$set': img})
+      r = bulk.execute()
+      print(r)
+    except Exception as e:
+      print(e)
 
   def update_images(self, images):
     try:
