@@ -10,7 +10,7 @@ try:
 
   ids.append('5a718ce0bd44107fbae98994')
 
-  res = api_instance.validate_images(ids, confirmed=True)
+  res = api_instance.validate_images(ids, valid=True)
   pprint(res)
 except Exception as e:
   print("Exception when calling validate_images: %s\n" % e)

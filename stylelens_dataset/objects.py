@@ -38,7 +38,7 @@ class Objects(DataBase):
 
     return list(r)
 
-  def get_objects_by_category_name(self, category_name,  offset=0, limit=50):
+  def get_objects_by_category_name(self, category_name, offset=0, limit=50):
     query = {"category_name":category_name}
 
     try:

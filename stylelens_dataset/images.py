@@ -49,14 +49,14 @@ class Images(DataBase):
     return list(r)
 
   def get_images_by_category_name(self, category_name,
-                                  is_confirmed=None,
+                                  valid=None,
                                   offset=0, limit=50):
     query = {"category_name":category_name}
 
-    if is_confirmed is None:
-      query['is_confirmed'] = {'$exists':False}
+    if valid is None:
+      query['is_valid'] = {'$exists':False}
     else:
-      query['is_confirmed'] = is_confirmed
+      query['is_valid'] = valid
 
     try:
       r = self.images.find(query).skip(offset).limit(limit)
@@ -65,13 +65,13 @@ class Images(DataBase):
 
     return list(r)
 
-  def get_images_count_by_category_name(self, category_name, is_confirmed=None):
+  def get_images_count_by_category_name(self, category_name, valid=None):
     query = {"category_name":category_name}
 
-    if is_confirmed is None:
-      query['is_confirmed'] = {'$exists':False}
+    if valid is None:
+      query['is_valid'] = {'$exists':False}
     else:
-      query['is_confirmed'] = is_confirmed
+      query['is_valid'] = valid
 
     try:
       r = self.images.find(query).count()
@@ -90,12 +90,12 @@ class Images(DataBase):
 
     return r.raw_result
 
-  def validate_images(self, ids, confirmed=True):
+  def validate_images(self, ids, valid=True):
     try:
       bulk = self.images.initialize_unordered_bulk_op()
       for i in ids:
         img = {}
-        img['is_confirmed'] = confirmed
+        img['is_valid'] = valid
         bulk.find({'_id': ObjectId(i)}).update({'$set': img})
       r = bulk.execute()
       print(r)

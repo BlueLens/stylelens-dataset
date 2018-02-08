@@ -9,7 +9,7 @@ try:
   limit = 100
 
   while True:
-    res = api_instance.get_objects_by_category_name("Blouse", offset=offset, limit=limit)
+    res = api_instance.get_objects_by_category_name("Blouse", valid=True, offset=offset, limit=limit)
 
     pprint(res)
     if limit > len(res):
