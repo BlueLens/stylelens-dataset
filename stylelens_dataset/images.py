@@ -68,10 +68,12 @@ class Images(DataBase):
   def get_images_count_by_category_name(self, category_name, valid=None):
     query = {"category_name":category_name}
 
-    if valid is None:
-      query['is_valid'] = {'$exists':False}
-    else:
+    if valid is not None:
       query['is_valid'] = valid
+      if valid == 'exists':
+        query['is_valid'] = {'$exists': True}
+      if valid == 'not_exists':
+        query['is_valid'] = {'$exists': False}
 
     try:
       r = self.images.find(query).count()
