@@ -23,7 +23,6 @@ class Colors(DataBase):
 
   def get_classes(self, offset=0, limit=100):
     query = {}
-
     try:
       r = self.classes.find(query).skip(offset).limit(limit)
     except Exception as e:
@@ -33,7 +32,7 @@ class Colors(DataBase):
 
   def get_colors_by_name(self, name,  offset=0, limit=50):
     query = {}
-    query['name'] = name
+    query['color'] = name
 
     try:
       r = self.colors.find(query).skip(offset).limit(limit)
