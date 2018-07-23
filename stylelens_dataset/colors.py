@@ -5,6 +5,7 @@ class Colors(DataBase):
   def __init__(self):
     super(Colors, self).__init__()
     self.colors = self.db.colors
+    self.products = self.db.products
     self.classes = self.db.color_classes
 
   def add_color(self, object):
@@ -35,7 +36,7 @@ class Colors(DataBase):
     query['color'] = name
 
     try:
-      r = self.colors.find(query).skip(offset).limit(limit)
+      r = self.products.find(query).skip(offset).limit(limit)
     except Exception as e:
       print(e)
     return list(r)
